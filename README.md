@@ -8,6 +8,8 @@
 - [Tools](#tools)
 - [Data Preparation](#data-preparation)
 - [Exploratory Data Analysis](#exploratory-data-analysis)
+
+  ![Dashboard](meriskillSalesDashboard.png)
   
 ## Overview
 This Project was assign by MeriSkill in other to understand the level of individuals understanding to Data analysis. MeriSkill Internship program in a virtual program.
