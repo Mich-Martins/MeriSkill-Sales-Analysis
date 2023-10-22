@@ -1,0 +1,74 @@
+--MeriSkill Sales report using SQLite;
+
+-- Checking the Dataset by runing the Select command
+select * from salesTable;
+
+/*Description
+    In this project, you will dive into a large sales dataset to extract valuable insights. 
+    You will explore sales trends over time, identify the best-selling products, calculate 
+    revenue metrics such as total sales and profit margins, and create visualizations to present 
+    your findings effectively. This project showcases your ability to manipulate and derive 
+    insights from large datasets, enabling you to make data-driven recommendations 
+    for optimizing sales strategies.*/
+
+-- First, Analyzing for trend over time by looking into the Year to year sales.
+
+SELECT strftime('%Y', "Order Date") AS Year, ROUND(SUM(Sales),2) AS TotalSales
+FROM salesTable
+GROUP BY Year
+ORDER BY Year;
+
+--Monthly Sales
+
+SELECT strftime('%Y-%m', "Order Date") AS Month, ROUND(SUM(Sales),2) AS TotalSales
+FROM salesTable
+GROUP BY Month
+ORDER BY Month DESC;
+
+--Hourly Sales
+
+SELECT strftime('%H', "Order Date") AS Hour, ROUND(SUM(Sales),2) AS TotalSales
+FROM salesTable
+GROUP BY Hour
+ORDER BY Hour DESC;
+
+--Highest Quantity Ordered Product
+
+SELECT Product, SUM("Quantity Ordered") AS TotalQuantityOrdered
+FROM salesTable
+GROUP BY Product
+ORDER BY TotalQuantityOrdered DESC;
+
+--Best Selling Product
+
+SELECT Product, SUM(sales) AS TotalSales
+FROM salesTable
+GROUP BY Product
+ORDER BY TotalSales DESC;
+
+--Top sales
+
+SELECT ROUND(SUM(Sales),2) AS TotalSales
+FROM salesTable;
+
+--Total Unique Orders
+
+SELECT COUNT(DISTINCT "Order ID") AS TotalOrders
+FROM salesTable;
+
+--Average Sales
+
+SELECT ROUND(AVG(Sales),2) AS AverageSales
+FROM salesTable;
+
+-- Unique Product
+
+SELECT COUNT(DISTINCT "Product") AS TotalUniqueProductsOrdered
+FROM salesTable;
+
+-- Cities with the Highest Sales
+
+SELECT city, ROUND(SUM(sales),2) AS TotalSales
+FROM salesTable
+GROUP BY city
+ORDER BY TotalSales DESC;
